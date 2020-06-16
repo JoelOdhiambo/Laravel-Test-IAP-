@@ -6,7 +6,17 @@
 </head>
 
 <body>
+@if (Session::has ('form_submit'))
+    {{session('form_submit')}}
 
+    
+@else (count($errors)) {
+    
+    @foreach ($errors as $error) 
+        <li>{{$errors}}</li>
+    
+        @endforeach
+}@endif
     <form action="/car" method="POST" enctype="multipart/form-data" >
         @csrf
         Make: <input type="text" required name="make"> <br>
